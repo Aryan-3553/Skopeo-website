@@ -89,12 +89,25 @@ export default {
         display: ["Sora", "Inter", "sans-serif"],
       },
       boxShadow: {
-        'aurora': '0 0 50px rgba(139, 92, 246, 0.3)',
-        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
+        'aurora': '0 0 80px rgba(255, 255, 255, 0.1)',
+        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+        'floating': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+        'glow': '0 0 40px rgba(255, 255, 255, 0.1)',
+        'inner-glow': 'inset 0 2px 4px 0 rgba(255, 255, 255, 0.1)',
       },
       backgroundImage: {
-        'grid-pattern': 'linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px)',
-        'aurora': 'radial-gradient(ellipse at top, rgba(139, 92, 246, 0.3), transparent 50%), radial-gradient(ellipse at bottom, rgba(34, 197, 94, 0.2), transparent 50%)',
+        'grid-pattern': 'linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)',
+        'aurora': 'radial-gradient(ellipse at top, rgba(255, 255, 255, 0.1), transparent 70%), radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.05), transparent 70%)',
+        'mesh': 'radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%)',
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "float": "float 6s ease-in-out infinite",
+        "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "spin-slow": "spin 8s linear infinite",
+        "bounce-slow": "bounce 3s infinite",
+        "slide": "slide 20s linear infinite",
       },
       keyframes: {
         "accordion-down": {
@@ -105,10 +118,14 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-20px)" },
+        },
+        "slide": {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
       },
     },
   },

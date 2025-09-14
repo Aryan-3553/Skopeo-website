@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Menu, X, Grid3x3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -29,20 +30,31 @@ export function SiteHeader() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full border-b transition-all duration-200 ${
+      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${
         isScrolled
-          ? "bg-background/80 backdrop-blur-md border-border"
+          ? "bg-black/80 backdrop-blur-lg border-white/20 shadow-glow"
           : "bg-transparent border-transparent"
       }`}
       data-testid="site-header"
     >
-      <div className="container flex h-16 items-center justify-between">
-        <div className="flex items-center space-x-2">
+      <div className="container flex h-20 items-center justify-between">
+        <div className="flex items-center space-x-3">
           <Link href="/" data-testid="link-home">
-            <div className="flex items-center space-x-2 hover-elevate rounded-md px-2 py-1">
-              <Grid3x3 className="h-6 w-6 text-primary" />
-              <span className="font-display font-bold text-xl">Skopeo</span>
-            </div>
+            <motion.div 
+              className="flex items-center space-x-3 hover-elevate rounded-lg px-3 py-2 group"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <motion.div
+                className="relative"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              >
+                <Grid3x3 className="h-8 w-8 text-white group-hover:text-white/80 transition-colors" />
+                <div className="absolute inset-0 bg-white/20 rounded blur-sm animate-pulse" />
+              </motion.div>
+              <span className="font-display font-bold text-2xl text-white group-hover:text-white/80 transition-colors">Skopeo</span>
+            </motion.div>
           </Link>
         </div>
 
@@ -65,9 +77,14 @@ export function SiteHeader() {
 
         <div className="flex items-center space-x-4">
           <ThemeToggle />
-          <Button data-testid="button-try-demo" className="hidden sm:inline-flex">
-            Try the Demo
-          </Button>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button 
+              data-testid="button-try-demo" 
+              className="hidden sm:inline-flex bg-white text-black hover:bg-white/90 font-semibold shadow-glow px-6 py-2"
+            >
+              Try the Demo
+            </Button>
+          </motion.div>
 
           {/* Mobile Navigation */}
           <Sheet>

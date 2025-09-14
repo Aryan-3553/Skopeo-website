@@ -41,25 +41,34 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-aurora opacity-20" />
+      {/* Futuristic 3D Background */}
+      <div className="absolute inset-0 bg-mesh opacity-30 animate-pulse-slow" />
       <div 
-        className="absolute inset-0 bg-grid-pattern opacity-30" 
-        style={{ backgroundSize: '50px 50px' }}
+        className="absolute inset-0 bg-grid-pattern animate-pulse-slow" 
+        style={{ backgroundSize: '80px 80px' }}
       />
+      
+      {/* Floating 3D Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-4 h-4 bg-white/20 rounded-full blur-sm animate-float" style={{ animationDelay: '0s' }} />
+        <div className="absolute top-40 right-20 w-6 h-6 bg-white/10 rounded-full blur-sm animate-float" style={{ animationDelay: '2s' }} />
+        <div className="absolute bottom-40 left-20 w-3 h-3 bg-white/30 rounded-full blur-sm animate-float" style={{ animationDelay: '4s' }} />
+        <div className="absolute bottom-20 right-10 w-5 h-5 bg-white/15 rounded-full blur-sm animate-float" style={{ animationDelay: '1s' }} />
+      </div>
+
       <motion.div
-        className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background"
+        className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-background"
         animate={{
           background: [
-            "linear-gradient(to bottom, transparent, rgba(var(--background) / 0.5), rgba(var(--background) / 1))",
-            "linear-gradient(to bottom, transparent, rgba(var(--background) / 0.7), rgba(var(--background) / 1))",
-            "linear-gradient(to bottom, transparent, rgba(var(--background) / 0.5), rgba(var(--background) / 1))"
+            "linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.3), rgb(0, 0, 0))",
+            "linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5), rgb(0, 0, 0))",
+            "linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.3), rgb(0, 0, 0))"
           ]
         }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="container relative z-10 text-center max-w-5xl mx-auto px-6">
+      <div className="container relative z-10 text-center max-w-6xl mx-auto px-6 flex flex-col items-center justify-center min-h-screen">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -73,14 +82,14 @@ export function Hero() {
         </motion.div>
 
         <motion.h1
-          className="font-display text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          className="font-display text-4xl md:text-6xl lg:text-8xl font-bold tracking-tight mb-8 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70"
+          initial={{ opacity: 0, y: 30, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           data-testid="hero-headline"
         >
           The self-hosted,{" "}
-          <span className="text-primary">AI-native</span>{" "}
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/90 animate-pulse-slow">AI-native</span>{" "}
           spreadsheet that thinks like an analyst
         </motion.h1>
 
@@ -95,54 +104,85 @@ export function Hero() {
           and verify outputs — with cell-level provenance, tests, and rollback.
         </motion.p>
 
-        {/* Demo Code Block */}
+        {/* Futuristic Demo Code Block */}
         <motion.div
-          className="bg-card/50 backdrop-blur-sm border border-card-border rounded-lg p-6 mb-8 max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          className="relative bg-black/70 backdrop-blur-md border border-white/20 rounded-2xl p-8 mb-12 max-w-4xl mx-auto shadow-glow"
+          initial={{ opacity: 0, y: 30, rotateX: 15 }}
+          animate={{ opacity: 1, y: 0, rotateX: 0 }}
+          transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+          whileHover={{ scale: 1.02, rotateX: -2 }}
           data-testid="demo-code-block"
+          style={{ transformStyle: 'preserve-3d' }}
         >
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-sm text-muted-foreground">Formula Bar</span>
-            <div className="flex space-x-1">
-              <div className="w-2 h-2 rounded-full bg-red-500" />
-              <div className="w-2 h-2 rounded-full bg-yellow-500" />
-              <div className="w-2 h-2 rounded-full bg-green-500" />
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-white/5 to-transparent animate-pulse-slow" />
+          
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center space-x-2">
+              <div className="w-3 h-3 rounded-full bg-white/40 animate-pulse" />
+              <span className="text-sm text-white/70 font-mono">AI Formula Engine</span>
+            </div>
+            <div className="flex space-x-2">
+              <div className="w-3 h-3 rounded-full bg-red-400 animate-pulse" style={{ animationDelay: '0s' }} />
+              <div className="w-3 h-3 rounded-full bg-yellow-400 animate-pulse" style={{ animationDelay: '0.5s' }} />
+              <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse" style={{ animationDelay: '1s' }} />
             </div>
           </div>
-          <div className="font-mono text-left text-sm md:text-base">
-            <span className="text-primary">{displayText}</span>
-            {isTyping && <span className="animate-pulse">|</span>}
+          
+          <div className="font-mono text-left text-lg md:text-xl mb-6 min-h-[3rem] flex items-center">
+            <span className="text-white">{displayText}</span>
+            {isTyping && <span className="animate-pulse text-white ml-1">|</span>}
           </div>
-          <div className="mt-3 pt-3 border-t border-border text-xs text-muted-foreground text-left">
-            ✓ Cell-level provenance • ✓ Auto-generated tests • ✓ Rollback ready
+          
+          <div className="flex flex-wrap gap-4 text-xs text-white/60 justify-center">
+            <div className="flex items-center space-x-2 bg-white/5 px-3 py-2 rounded-lg">
+              <div className="w-2 h-2 rounded-full bg-green-400" />
+              <span>Cell-level provenance</span>
+            </div>
+            <div className="flex items-center space-x-2 bg-white/5 px-3 py-2 rounded-lg">
+              <div className="w-2 h-2 rounded-full bg-blue-400" />
+              <span>Auto-generated tests</span>
+            </div>
+            <div className="flex items-center space-x-2 bg-white/5 px-3 py-2 rounded-lg">
+              <div className="w-2 h-2 rounded-full bg-purple-400" />
+              <span>Rollback ready</span>
+            </div>
           </div>
         </motion.div>
 
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          transition={{ duration: 1, delay: 0.8 }}
         >
-          <Button 
-            size="lg" 
-            className="text-lg px-8 py-6 shadow-aurora"
-            data-testid="button-try-demo-hero"
+          <motion.div
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <Play className="mr-2 h-5 w-5" />
-            Try the Demo
-          </Button>
-          <Button 
-            variant="outline" 
-            size="lg" 
-            className="text-lg px-8 py-6 bg-background/50 backdrop-blur-sm"
-            data-testid="button-book-call"
+            <Button 
+              size="lg" 
+              className="text-lg px-10 py-8 bg-white text-black hover:bg-white/90 shadow-glow border border-white/20 font-semibold"
+              data-testid="button-try-demo-hero"
+            >
+              <Play className="mr-3 h-6 w-6" />
+              Try the Demo
+            </Button>
+          </motion.div>
+          
+          <motion.div
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
           >
-            Book a Call
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="text-lg px-10 py-8 bg-black/50 backdrop-blur-md border-white/30 text-white hover:bg-black/70 shadow-inner-glow"
+              data-testid="button-book-call"
+            >
+              Book a Call
+              <ArrowRight className="ml-3 h-6 w-6" />
+            </Button>
+          </motion.div>
         </motion.div>
 
         <motion.div

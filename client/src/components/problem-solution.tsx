@@ -44,8 +44,13 @@ const solutions = [
 
 export function ProblemSolution() {
   return (
-    <section className="py-24" data-testid="problem-solution-section">
-      <div className="container">
+    <section className="py-32 relative overflow-hidden" data-testid="problem-solution-section">
+      {/* 3D Background Elements */}
+      <div className="absolute inset-0 bg-mesh opacity-20" />
+      <div className="absolute top-10 left-10 w-32 h-32 bg-white/5 rounded-full blur-3xl animate-float" />
+      <div className="absolute bottom-10 right-10 w-48 h-48 bg-white/3 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+      
+      <div className="container relative z-10">
         {/* Problems Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -65,26 +70,30 @@ export function ProblemSolution() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
           {problems.map((problem, index) => (
             <motion.div
               key={problem.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              initial={{ opacity: 0, y: 30, rotateY: -15 }}
+              whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
               viewport={{ once: true }}
+              whileHover={{ y: -8, rotateY: 5, scale: 1.02 }}
               data-testid={`problem-card-${index}`}
+              style={{ transformStyle: 'preserve-3d' }}
             >
-              <Card className="h-full border-destructive/20 bg-destructive/5">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <problem.icon className="h-6 w-6 text-destructive" />
-                    <h3 className="font-semibold text-lg">{problem.title}</h3>
+              <Card className="h-full border-red-500/30 bg-red-950/20 backdrop-blur-sm shadow-glow hover:shadow-red-500/20 transition-all duration-300">
+                <CardContent className="p-8">
+                  <div className="flex items-center space-x-4 mb-6">
+                    <div className="p-3 bg-red-500/20 rounded-lg">
+                      <problem.icon className="h-7 w-7 text-red-400" />
+                    </div>
+                    <h3 className="font-bold text-xl text-white">{problem.title}</h3>
                   </div>
-                  <p className="text-muted-foreground mb-4">{problem.description}</p>
-                  <div className="flex flex-wrap gap-2">
+                  <p className="text-white/70 mb-6 leading-relaxed">{problem.description}</p>
+                  <div className="flex flex-wrap gap-3">
                     {problem.chips.map((chip, chipIndex) => (
-                      <Badge key={chipIndex} variant="outline" className="text-xs">
+                      <Badge key={chipIndex} variant="outline" className="text-xs bg-red-950/40 border-red-500/40 text-red-300 hover:bg-red-950/60">
                         {chip}
                       </Badge>
                     ))}
@@ -131,24 +140,28 @@ export function ProblemSolution() {
           {solutions.map((solution, index) => (
             <motion.div
               key={solution.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              initial={{ opacity: 0, y: 30, rotateY: 15 }}
+              whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
               viewport={{ once: true }}
+              whileHover={{ y: -8, rotateY: -5, scale: 1.02 }}
               data-testid={`solution-card-${index}`}
+              style={{ transformStyle: 'preserve-3d' }}
             >
-              <Card className="h-full border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-950/20 hover-elevate">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <CheckCircle className="h-6 w-6 text-green-600 dark:text-green-400" />
-                    <h3 className="font-semibold text-lg">{solution.title}</h3>
+              <Card className="h-full border-green-400/30 bg-green-950/20 backdrop-blur-sm shadow-glow hover:shadow-green-400/20 transition-all duration-300">
+                <CardContent className="p-8">
+                  <div className="flex items-center space-x-4 mb-6">
+                    <div className="p-3 bg-green-400/20 rounded-lg">
+                      <CheckCircle className="h-7 w-7 text-green-400" />
+                    </div>
+                    <h3 className="font-bold text-xl text-white">{solution.title}</h3>
                   </div>
-                  <p className="text-muted-foreground mb-4">{solution.description}</p>
-                  <ul className="space-y-2">
+                  <p className="text-white/70 mb-6 leading-relaxed">{solution.description}</p>
+                  <ul className="space-y-3">
                     {solution.benefits.map((benefit, benefitIndex) => (
-                      <li key={benefitIndex} className="flex items-center space-x-2 text-sm">
-                        <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                        <span>{benefit}</span>
+                      <li key={benefitIndex} className="flex items-center space-x-3 text-sm">
+                        <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                        <span className="text-white/80">{benefit}</span>
                       </li>
                     ))}
                   </ul>
