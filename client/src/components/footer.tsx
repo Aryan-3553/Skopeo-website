@@ -1,4 +1,4 @@
-import { Grid3x3, Github, Twitter, Linkedin, Mail } from "lucide-react";
+import { Grid3x3, Github, Linkedin, Mail } from "lucide-react";
 import { Link } from "wouter";
 
 const footerSections = [
@@ -41,8 +41,7 @@ const footerSections = [
 ];
 
 const socialLinks = [
-  { name: "GitHub", href: "https://github.com/skopeo", icon: Github },
-  { name: "Twitter", href: "https://twitter.com/skopeo", icon: Twitter },
+  { name: "GitHub", href: "https://github.com/orgs/BetterExcel/repositories", icon: Github },
   { name: "LinkedIn", href: "https://linkedin.com/company/skopeo", icon: Linkedin },
   { name: "Email", href: "mailto:skopeoai@gmail.com", icon: Mail },
 ];
