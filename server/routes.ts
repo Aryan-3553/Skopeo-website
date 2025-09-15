@@ -24,8 +24,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Contact form submission endpoint
   app.post("/api/contact", async (req, res) => {
     try {
-      // Validate the request body
-      const validatedData = insertContactMessageSchema.parse(req.body);
+      // Accept any data without validation
+      const formData = req.body;
       
       // Extract IP address and user agent for tracking
       const ipAddress = req.ip || req.connection.remoteAddress || req.socket.remoteAddress;
@@ -33,7 +33,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Create the contact message with additional metadata
       const contactMessage = await storage.createContactMessage({
-        ...validatedData,
+        firstName: formData.firstName || "Unknown",
+        lastName: formData.lastName || "User",
+        email: formData.email || "no-email@example.com",
+        company: formData.company || undefined,
+        role: formData.role || undefined,
+        message: formData.message || "No message provided",
         ipAddress: ipAddress || undefined,
         userAgent: userAgent || undefined,
       });
@@ -48,19 +53,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     } catch (error) {
       console.error("Error creating contact message:", error);
-      
-      if (error instanceof Error && error.name === 'ZodError') {
-        res.status(400).json({
-          status: "error",
-          message: "Invalid form data",
-          errors: error.message
-        });
-      } else {
-        res.status(500).json({
-          status: "error",
-          message: "Internal server error"
-        });
-      }
+      res.status(500).json({
+        status: "error",
+        message: "Internal server error"
+      });
     }
   });
 
