@@ -6,17 +6,14 @@ const footerSections = [
     title: "Product",
     links: [
       { name: "Features", href: "/features" },
-      { name: "Pricing", href: "/pricing" },
       { name: "Demo", href: "/demo" },
-      { name: "Security", href: "/security" },
     ],
   },
   {
     title: "Company",
     links: [
       { name: "About", href: "/about" },
-      { name: "Blog", href: "/blog" },
-      { name: "Careers", href: "/careers" },
+      { name: "Team", href: "/team" },
       { name: "Contact", href: "/contact" },
     ],
   },
