@@ -242,29 +242,7 @@ export default function Contact() {
               </CardContent>
             </Card>
 
-            <Card className="bg-primary/5 border-primary/20" data-testid="enterprise-contact">
-              <CardHeader>
-                <CardTitle className="text-primary">Enterprise Sales</CardTitle>
-                <CardDescription>
-                  Need a custom solution for your organization?
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Our enterprise team can help with custom deployments, integrations, and enterprise-grade security requirements.
-                </p>
-                <Button 
-                  variant="outline" 
-                  className="w-full" 
-                  data-testid="button-enterprise-contact"
-                  asChild
-                >
-                  <a href="mailto:skopeoai@gmail.com?subject=Enterprise Sales Inquiry">
-                    Contact Enterprise Sales
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
+
           </motion.div>
         </div>
       </div>
