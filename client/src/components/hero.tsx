@@ -185,9 +185,12 @@ export function Hero() {
               size="lg" 
               className="text-lg px-10 py-8 bg-black/50 backdrop-blur-md border-white/30 text-white hover:bg-black/70 shadow-inner-glow"
               data-testid="button-book-call"
+              asChild
             >
-              Book a Call
-              <ArrowRight className="ml-3 h-6 w-6" />
+              <a href="https://calendly.com/skopeoai/30min" target="_blank" rel="noopener noreferrer">
+                Book a Call
+                <ArrowRight className="ml-3 h-6 w-6" />
+              </a>
             </Button>
           </motion.div>
         </motion.div>
