@@ -19,16 +19,46 @@ export default function Contact() {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsLoading(false);
-    setIsSubmitted(true);
-    
-    toast({
-      title: "Message sent successfully!",
-      description: "We'll get back to you within 24 hours.",
-    });
+    try {
+      const formData = new FormData(e.currentTarget);
+      const data = {
+        firstName: formData.get('firstName') as string,
+        lastName: formData.get('lastName') as string,
+        email: formData.get('email') as string,
+        company: formData.get('company') as string || undefined,
+        role: formData.get('role') as string || undefined,
+        message: formData.get('message') as string,
+      };
+
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || 'Failed to send message');
+      }
+
+      setIsSubmitted(true);
+      toast({
+        title: "Message sent successfully!",
+        description: "We'll get back to you within 24 hours.",
+      });
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      toast({
+        title: "Error sending message",
+        description: error instanceof Error ? error.message : "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const contactInfo = [
@@ -127,6 +157,7 @@ export default function Contact() {
                       <Label htmlFor="firstName">First Name</Label>
                       <Input 
                         id="firstName" 
+                        name="firstName"
                         required 
                         data-testid="input-first-name"
                         placeholder="John"
@@ -136,6 +167,7 @@ export default function Contact() {
                       <Label htmlFor="lastName">Last Name</Label>
                       <Input 
                         id="lastName" 
+                        name="lastName"
                         required 
                         data-testid="input-last-name"
                         placeholder="Doe"
@@ -147,6 +179,7 @@ export default function Contact() {
                     <Label htmlFor="email">Email</Label>
                     <Input 
                       id="email" 
+                      name="email"
                       type="email" 
                       required 
                       data-testid="input-email"
@@ -158,6 +191,7 @@ export default function Contact() {
                     <Label htmlFor="company">Company</Label>
                     <Input 
                       id="company" 
+                      name="company"
                       data-testid="input-company"
                       placeholder="Your Company"
                     />
@@ -165,7 +199,7 @@ export default function Contact() {
 
                   <div className="space-y-2">
                     <Label htmlFor="role">Role</Label>
-                    <Select>
+                    <Select name="role">
                       <SelectTrigger data-testid="select-role">
                         <SelectValue placeholder="Select your role" />
                       </SelectTrigger>
@@ -184,6 +218,7 @@ export default function Contact() {
                     <Label htmlFor="message">Message</Label>
                     <Textarea 
                       id="message" 
+                      name="message"
                       required 
                       rows={4}
                       data-testid="textarea-message"
