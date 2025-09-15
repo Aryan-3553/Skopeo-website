@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Menu, X, Grid3x3 } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ThemeToggle } from "./theme-toggle";
@@ -50,11 +50,15 @@ export function SiteHeader() {
             >
               <motion.div
                 className="relative"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.2 }}
               >
-                <Grid3x3 className="h-8 w-8 text-white group-hover:text-white/80 transition-colors" />
-                <div className="absolute inset-0 bg-white/20 rounded blur-sm animate-pulse" />
+                <img 
+                  src="/images/skopeo-logo.svg" 
+                  alt="Skopeo Logo" 
+                  className="h-8 w-8 group-hover:opacity-80 transition-opacity"
+                />
+                <div className="absolute inset-0 bg-white/10 rounded-full blur-sm animate-pulse" />
               </motion.div>
               <span className="font-display font-bold text-2xl text-white group-hover:text-white/80 transition-colors">Skopeo</span>
             </motion.div>
