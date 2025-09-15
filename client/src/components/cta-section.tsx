@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, GitBranch } from "lucide-react";
+import { GitBranch } from "lucide-react";
 
 export function CTASection() {
   return (
@@ -30,48 +30,24 @@ export function CTASection() {
             Start your journey with AI-native spreadsheets today.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-            <Button 
-              size="lg" 
-              className="text-lg px-8 py-6 shadow-aurora group"
-              data-testid="button-start-free-trial"
-            >
-              <Play className="mr-2 h-5 w-5" />
-              Start Free Trial
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            
+          <div className="flex justify-center items-center">
             <Button 
               variant="outline" 
               size="lg" 
               className="text-lg px-8 py-6 bg-background/50 backdrop-blur-sm"
               data-testid="button-view-github"
+              asChild
             >
-              <GitBranch className="mr-2 h-5 w-5" />
-              View on GitHub
+              <a 
+                href="https://github.com/orgs/BetterExcel/repositories"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <GitBranch className="mr-2 h-5 w-5" />
+                View on GitHub
+              </a>
             </Button>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="flex flex-wrap justify-center gap-8 text-sm text-muted-foreground"
-          >
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 rounded-full bg-green-500" />
-              <span>30-day free trial</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 rounded-full bg-blue-500" />
-              <span>No credit card required</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 rounded-full bg-purple-500" />
-              <span>Cancel anytime</span>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>
