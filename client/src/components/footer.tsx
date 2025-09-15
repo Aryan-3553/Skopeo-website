@@ -37,7 +37,7 @@ const footerSections = [
 
 const socialLinks = [
   { name: "GitHub", href: "https://github.com/orgs/BetterExcel/repositories", icon: Github },
-  { name: "LinkedIn", href: "https://linkedin.com/company/skopeo", icon: Linkedin },
+  { name: "LinkedIn", href: "https://www.linkedin.com/company/skopeo-ai/about/?viewAsMember=true", icon: Linkedin },
   { name: "Email", href: "mailto:skopeoai@gmail.com", icon: Mail },
 ];
 
