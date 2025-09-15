@@ -31,7 +31,7 @@ const pricingTiers: PricingTier[] = [
   },
   {
     name: "Team",
-    price: "$49",
+    price: "$15",
     description: "For growing teams that need more power",
     features: [
       "Everything in Community",
