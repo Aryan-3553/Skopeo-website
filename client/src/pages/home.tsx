@@ -16,8 +16,8 @@ export default function Home() {
       <ProblemSolution />
       <ProductHighlights />
       <UseCases />
-      <SecurityHighlights />
-      <PricingTable />
+      {/* <SecurityHighlights /> */}
+      {/* <PricingTable /> */}
       <TestimonialCarousel />
       <CTASection />
     </div>

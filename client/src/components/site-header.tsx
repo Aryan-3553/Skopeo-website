@@ -9,10 +9,10 @@ import { Link, useLocation } from "wouter";
 const navigation = [
   { name: "Product", href: "/product" },
   { name: "Features", href: "/features" },
-  { name: "Docs", href: "/docs" },
-  { name: "Pricing", href: "/pricing" },
-  { name: "Blog", href: "/blog" },
-  { name: "Security", href: "/security" },
+  // { name: "Docs", href: "/docs" },
+  // { name: "Pricing", href: "/pricing" },
+  // { name: "Blog", href: "/blog" },
+  // { name: "Security", href: "/security" },
   { name: "Contact", href: "/contact" },
 ];
 
