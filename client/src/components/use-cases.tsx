@@ -114,9 +114,14 @@ export function UseCases() {
           <p className="text-muted-foreground mb-4">
             Don't see your use case? Skopeo's flexible AI engine adapts to any industry.
           </p>
-          <button className="text-primary hover:text-primary/80 font-medium hover-elevate px-3 py-2 rounded-md transition-colors">
+          <a 
+            href="https://docs.google.com/forms/d/e/1FAIpQLSe5eDQM8P_Bm9A3RqnV9tYclZDLhNstHqxRxI1dFiVS5WdDuw/viewform?usp=dialog"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary hover:text-primary/80 font-medium hover-elevate px-3 py-2 rounded-md transition-colors inline-block"
+          >
             Tell us about your needs →
-          </button>
+          </a>
         </motion.div>
       </div>
     </section>
