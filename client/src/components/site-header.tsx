@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Grid3x3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ThemeToggle } from "./theme-toggle";
@@ -50,15 +50,11 @@ export function SiteHeader() {
             >
               <motion.div
                 className="relative"
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.2 }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               >
-                <img 
-                  src="/images/skopeo-logo.svg" 
-                  alt="Skopeo Logo" 
-                  className="h-8 w-8 group-hover:opacity-80 transition-opacity"
-                />
-                <div className="absolute inset-0 bg-white/10 rounded-full blur-sm animate-pulse" />
+                <Grid3x3 className="h-8 w-8 text-white group-hover:text-white/80 transition-colors" />
+                <div className="absolute inset-0 bg-white/20 rounded blur-sm animate-pulse" />
               </motion.div>
               <span className="font-display font-bold text-2xl text-white group-hover:text-white/80 transition-colors">Skopeo</span>
             </motion.div>
@@ -86,17 +82,10 @@ export function SiteHeader() {
           <ThemeToggle />
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button 
-              data-testid="button-join-waitlist" 
+              data-testid="button-try-demo" 
               className="hidden sm:inline-flex bg-white text-black hover:bg-white/90 font-semibold shadow-glow px-6 py-2"
-              asChild
             >
-              <a 
-                href="https://docs.google.com/forms/d/e/1FAIpQLSe5eDQM8P_Bm9A3RqnV9tYclZDLhNstHqxRxI1dFiVS5WdDuw/viewform?usp=dialog"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Join the Waitlist
-              </a>
+              Try the Demo
             </Button>
           </motion.div>
 
@@ -117,18 +106,8 @@ export function SiteHeader() {
                     </div>
                   </Link>
                 ))}
-                <Button 
-                  className="mt-4" 
-                  data-testid="mobile-button-join-waitlist"
-                  asChild
-                >
-                  <a 
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSe5eDQM8P_Bm9A3RqnV9tYclZDLhNstHqxRxI1dFiVS5WdDuw/viewform?usp=dialog"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Join the Waitlist
-                  </a>
+                <Button className="mt-4" data-testid="mobile-button-try-demo">
+                  Try the Demo
                 </Button>
               </nav>
             </SheetContent>

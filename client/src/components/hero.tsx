@@ -163,9 +163,16 @@ export function Hero() {
               size="lg" 
               className="text-lg px-10 py-8 bg-white text-black hover:bg-white/90 shadow-glow border border-white/20 font-semibold"
               data-testid="button-try-demo-hero"
+              asChild
             >
-              <Play className="mr-3 h-6 w-6" />
-              Join the Waitlist
+              <a 
+                href="https://docs.google.com/forms/d/e/1FAIpQLSe5eDQM8P_Bm9A3RqnV9tYclZDLhNstHqxRxI1dFiVS5WdDuw/viewform?usp=dialog"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Play className="mr-3 h-6 w-6" />
+                Join the Waitlist
+              </a>
             </Button>
           </motion.div>
           
