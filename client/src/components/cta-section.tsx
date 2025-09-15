@@ -26,8 +26,8 @@ export function CTASection() {
           </h2>
           
           <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Be among the first to experience the future of spreadsheets. 
-            Join our waitlist and get early access to Skopeo.
+            Join thousands of analysts who have already transformed their workflows. 
+            Start your journey with AI-native spreadsheets today.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
@@ -35,17 +35,10 @@ export function CTASection() {
               size="lg" 
               className="text-lg px-8 py-6 shadow-aurora group"
               data-testid="button-start-free-trial"
-              asChild
             >
-              <a 
-                href="https://docs.google.com/forms/d/e/1FAIpQLSe5eDQM8P_Bm9A3RqnV9tYclZDLhNstHqxRxI1dFiVS5WdDuw/viewform?usp=dialog"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Play className="mr-2 h-5 w-5" />
-                Join the Waitlist
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </a>
+              <Play className="mr-2 h-5 w-5" />
+              Start Free Trial
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             
             <Button 
@@ -68,15 +61,15 @@ export function CTASection() {
           >
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 rounded-full bg-green-500" />
-              <span>Early access</span>
+              <span>30-day free trial</span>
             </div>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 rounded-full bg-blue-500" />
-              <span>Free to join</span>
+              <span>No credit card required</span>
             </div>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 rounded-full bg-purple-500" />
-              <span>Priority support</span>
+              <span>Cancel anytime</span>
             </div>
           </motion.div>
         </motion.div>
