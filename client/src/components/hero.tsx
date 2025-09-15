@@ -76,7 +76,7 @@ export function Hero() {
         >
           <Badge variant="secondary" className="mb-6 text-sm px-4 py-2" data-testid="badge-announcement">
             <span className="mr-2">🚀</span>
-            Now supporting multi-LLM routing
+            Something big is on the way!
             <ChevronRight className="ml-1 h-3 w-3" />
           </Badge>
         </motion.div>

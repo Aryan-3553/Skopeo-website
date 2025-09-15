@@ -37,7 +37,10 @@ export function SiteHeader() {
       }`}
       data-testid="site-header"
     >
-      <div className="container flex h-20 items-center justify-between">
+      <div 
+        className="container flex h-20 items-center" 
+        style={{ justifyContent: 'space-between' }}
+      >
         <div className="flex items-center space-x-3">
           <Link href="/" data-testid="link-home">
             <motion.div 

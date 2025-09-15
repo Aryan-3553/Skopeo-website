@@ -28,9 +28,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="dark" storageKey="skopeo-ui-theme">
         <TooltipProvider>
-          <div className="min-h-screen bg-background text-foreground">
+          <div className="min-h-screen bg-background text-foreground flex flex-col">
             <SiteHeader />
-            <main>
+            <main className="flex-1 flex flex-col">
               <Router />
             </main>
             <Footer />

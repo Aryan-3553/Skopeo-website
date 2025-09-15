@@ -10,7 +10,7 @@ import { CTASection } from "@/components/cta-section";
 
 export default function Home() {
   return (
-    <div className="min-h-screen" data-testid="home-page">
+    <div className="w-full" data-testid="home-page">
       <Hero />
       <LogoCloud />
       <ProblemSolution />
