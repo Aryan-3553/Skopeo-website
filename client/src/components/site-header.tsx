@@ -84,8 +84,15 @@ export function SiteHeader() {
             <Button 
               data-testid="button-try-demo" 
               className="hidden sm:inline-flex bg-white text-black hover:bg-white/90 font-semibold shadow-glow px-6 py-2"
+              asChild
             >
-              Try the Demo
+              <a 
+                href="https://docs.google.com/forms/d/e/1FAIpQLSe5eDQM8P_Bm9A3RqnV9tYclZDLhNstHqxRxI1dFiVS5WdDuw/viewform?usp=dialog"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Join the Waitlist
+              </a>
             </Button>
           </motion.div>
 
@@ -106,8 +113,18 @@ export function SiteHeader() {
                     </div>
                   </Link>
                 ))}
-                <Button className="mt-4" data-testid="mobile-button-try-demo">
-                  Try the Demo
+                <Button 
+                  className="mt-4" 
+                  data-testid="mobile-button-try-demo"
+                  asChild
+                >
+                  <a 
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSe5eDQM8P_Bm9A3RqnV9tYclZDLhNstHqxRxI1dFiVS5WdDuw/viewform?usp=dialog"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Join the Waitlist
+                  </a>
                 </Button>
               </nav>
             </SheetContent>
