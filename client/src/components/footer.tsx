@@ -48,7 +48,7 @@ export function Footer() {
       <div className="container py-20 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand Section */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-1">
             <Link href="/" data-testid="footer-logo">
               <div className="flex items-center space-x-3 mb-6 group">
                 <div className="relative">
