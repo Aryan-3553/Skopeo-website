@@ -21,8 +21,6 @@ const footerSections = [
     title: "Resources",
     links: [
       { name: "Documentation", href: "/docs" },
-      { name: "Changelog", href: "/changelog" },
-      { name: "Community", href: "/community" },
       { name: "Support", href: "/support" },
     ],
   },
@@ -48,7 +46,7 @@ export function Footer() {
     <footer className="border-t border-white/20 bg-black relative" data-testid="site-footer">
       <div className="absolute inset-0 bg-grid-pattern opacity-10" style={{ backgroundSize: '40px 40px' }} />
       <div className="container py-20 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <Link href="/" data-testid="footer-logo">
