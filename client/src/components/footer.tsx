@@ -107,7 +107,7 @@ export function Footer() {
         {/* Bottom Section */}
         <div className="border-t border-white/20 pt-10 mt-20 flex flex-col sm:flex-row justify-between items-center space-y-6 sm:space-y-0">
           <p className="text-sm text-white/60">
-            © 2024 Skopeo. All rights reserved.
+            © 2025 Skopeo. All rights reserved.
           </p>
           <div className="flex items-center space-x-8 text-sm">
             <span className="text-white/60">
