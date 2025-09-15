@@ -1,4 +1,4 @@
-import { Grid3x3, Github, Twitter, Linkedin, Mail } from "lucide-react";
+import { Grid3x3, Github, Linkedin, Mail } from "lucide-react";
 import { Link } from "wouter";
 
 const footerSections = [
@@ -6,17 +6,14 @@ const footerSections = [
     title: "Product",
     links: [
       { name: "Features", href: "/features" },
-      { name: "Pricing", href: "/pricing" },
       { name: "Demo", href: "/demo" },
-      { name: "Security", href: "/security" },
     ],
   },
   {
     title: "Company",
     links: [
       { name: "About", href: "/about" },
-      { name: "Blog", href: "/blog" },
-      { name: "Careers", href: "/careers" },
+      { name: "Team", href: "/team" },
       { name: "Contact", href: "/contact" },
     ],
   },
@@ -24,8 +21,6 @@ const footerSections = [
     title: "Resources",
     links: [
       { name: "Documentation", href: "/docs" },
-      { name: "Changelog", href: "/changelog" },
-      { name: "Community", href: "/community" },
       { name: "Support", href: "/support" },
     ],
   },
@@ -41,8 +36,7 @@ const footerSections = [
 ];
 
 const socialLinks = [
-  { name: "GitHub", href: "https://github.com/skopeo", icon: Github },
-  { name: "Twitter", href: "https://twitter.com/skopeo", icon: Twitter },
+  { name: "GitHub", href: "https://github.com/orgs/BetterExcel/repositories", icon: Github },
   { name: "LinkedIn", href: "https://linkedin.com/company/skopeo", icon: Linkedin },
   { name: "Email", href: "mailto:skopeoai@gmail.com", icon: Mail },
 ];
