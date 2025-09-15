@@ -35,15 +35,21 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Email",
-      description: "hello@skopeo.ai",
-      action: "mailto:hello@skopeo.ai"
+      description: "skopeoai@gmail.com",
+      action: "mailto:skopeoai@gmail.com"
     },
-    {
-      icon: Phone,
-      title: "Phone",
-      description: "+1 (555) 123-4567",
-      action: "tel:+15551234567"
-    },
+    // {
+    //   icon: Phone,
+    //   title: "Phone",
+    //   description: "+1 (226) 201-7007",
+    //   action: "tel:+12262017007"
+    // },
+    // {
+    //   icon: Phone,
+    //   title: "Phone (Alternative)",
+    //   description: "+1 (647) 550-8295",
+    //   action: "tel:+16475508295"
+    // },
     {
       icon: MapPin,
       title: "Office",
@@ -247,8 +253,15 @@ export default function Contact() {
                 <p className="text-sm text-muted-foreground mb-4">
                   Our enterprise team can help with custom deployments, integrations, and enterprise-grade security requirements.
                 </p>
-                <Button variant="outline" className="w-full" data-testid="button-enterprise-contact">
-                  Contact Enterprise Sales
+                <Button 
+                  variant="outline" 
+                  className="w-full" 
+                  data-testid="button-enterprise-contact"
+                  asChild
+                >
+                  <a href="mailto:skopeoai@gmail.com?subject=Enterprise Sales Inquiry">
+                    Contact Enterprise Sales
+                  </a>
                 </Button>
               </CardContent>
             </Card>

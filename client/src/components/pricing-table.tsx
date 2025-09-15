@@ -31,7 +31,7 @@ const pricingTiers: PricingTier[] = [
   },
   {
     name: "Team",
-    price: "$15",
+    price: "15",
     description: "For growing teams that need more power",
     features: [
       "Everything in Community",
@@ -155,7 +155,7 @@ export function PricingTable() {
           className="text-center mt-12"
         >
           <p className="text-muted-foreground">
-            All plans include 30-day free trial • No setup fees • Cancel anytime
+            All plans include 7-days free trial • No setup fees • Cancel anytime
           </p>
         </motion.div>
       </div>

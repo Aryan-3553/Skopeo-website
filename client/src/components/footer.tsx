@@ -44,7 +44,7 @@ const socialLinks = [
   { name: "GitHub", href: "https://github.com/skopeo", icon: Github },
   { name: "Twitter", href: "https://twitter.com/skopeo", icon: Twitter },
   { name: "LinkedIn", href: "https://linkedin.com/company/skopeo", icon: Linkedin },
-  { name: "Email", href: "mailto:hello@skopeo.ai", icon: Mail },
+  { name: "Email", href: "mailto:skopeoai@gmail.com", icon: Mail },
 ];
 
 export function Footer() {
