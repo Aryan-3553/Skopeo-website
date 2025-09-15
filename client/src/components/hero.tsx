@@ -165,7 +165,7 @@ export function Hero() {
               data-testid="button-try-demo-hero"
             >
               <Play className="mr-3 h-6 w-6" />
-              Try the Demo
+              Join the Waitlist
             </Button>
           </motion.div>
           
