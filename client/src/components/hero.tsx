@@ -82,14 +82,14 @@ export function Hero() {
         </motion.div>
 
         <motion.h1
-          className="font-display text-4xl md:text-6xl lg:text-8xl font-bold tracking-tight mb-8 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70"
+          className="font-display text-4xl md:text-6xl lg:text-8xl font-bold tracking-tight mb-8 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70 dark:from-white dark:to-white/70"
           initial={{ opacity: 0, y: 30, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           data-testid="hero-headline"
         >
           The self-hosted,{" "}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/90 animate-pulse-slow">AI-native</span>{" "}
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground via-foreground to-foreground/90 dark:from-white dark:via-white dark:to-white/90 animate-pulse-slow">AI-native</span>{" "}
           spreadsheet that thinks like an analyst
         </motion.h1>
 

@@ -212,6 +212,17 @@
     @apply border-border;
   }
 
+  /* Ensure dark background by default to prevent flash */
+  html {
+    background-color: hsl(0 0% 5%) !important;
+    color-scheme: dark;
+  }
+  
+  /* Ensure dark background even before CSS loads */
+  html:not(.light) {
+    background-color: hsl(0 0% 5%) !important;
+  }
+
   body {
     @apply font-sans antialiased bg-background text-foreground;
   }

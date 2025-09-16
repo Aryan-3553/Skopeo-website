@@ -7,8 +7,8 @@ import { ThemeToggle } from "./theme-toggle";
 import { Link, useLocation } from "wouter";
 
 const navigation = [
-  { name: "Product", href: "/product" },
-  { name: "Features", href: "/features" },
+  { name: "Product", href: "/#product-highlights" },
+  { name: "Features", href: "/#solution-section" },
   // { name: "Docs", href: "/docs" },
   // { name: "Pricing", href: "/pricing" },
   // { name: "Blog", href: "/blog" },
@@ -28,11 +28,53 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleProductClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    // If not on home page, navigate there first
+    if (location !== '/') {
+      window.location.href = '/#product-highlights';
+    } else {
+      // Already on home page, just scroll
+      const element = document.getElementById('product-highlights');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+  const handleFeaturesClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    // If not on home page, navigate there first
+    if (location !== '/') {
+      window.location.href = '/#solution-section';
+    } else {
+      // Already on home page, just scroll
+      const element = document.getElementById('solution-section');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    // If not on home page, navigate there first
+    if (location !== '/') {
+      window.location.href = '/';
+    } else {
+      // Already on home page, just scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <header
       className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${
         isScrolled
-          ? "bg-black/80 backdrop-blur-lg border-white/20 shadow-glow"
+          ? "bg-background/80 backdrop-blur-lg border-border shadow-glow"
           : "bg-transparent border-transparent"
       }`}
       data-testid="site-header"
@@ -42,9 +84,9 @@ export function SiteHeader() {
         style={{ justifyContent: 'space-between' }}
       >
         <div className="flex items-center space-x-3">
-          <Link href="/" data-testid="link-home">
+          <div onClick={handleLogoClick} data-testid="link-home">
             <motion.div 
-              className="flex items-center space-x-3 hover-elevate rounded-lg px-3 py-2 group"
+              className="flex items-center space-x-3 hover-elevate rounded-lg px-3 py-2 group cursor-pointer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -53,28 +95,42 @@ export function SiteHeader() {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               >
-                <Grid3x3 className="h-8 w-8 text-white group-hover:text-white/80 transition-colors" />
-                <div className="absolute inset-0 bg-white/20 rounded blur-sm animate-pulse" />
+                <Grid3x3 className="h-8 w-8 text-foreground group-hover:text-foreground/80 transition-colors" />
+                <div className="absolute inset-0 bg-foreground/20 rounded blur-sm animate-pulse" />
               </motion.div>
-              <span className="font-display font-bold text-2xl text-white group-hover:text-white/80 transition-colors">Skopeo</span>
+              <span className="font-display font-bold text-2xl text-foreground group-hover:text-foreground/80 transition-colors">Skopeo</span>
             </motion.div>
-          </Link>
+          </div>
         </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
           {navigation.map((item) => (
-            <Link key={item.name} href={item.href} data-testid={`link-${item.name.toLowerCase()}`}>
-              <div
-                className={`text-sm font-medium transition-colors hover-elevate px-3 py-2 rounded-md ${
-                  location === item.href
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {item.name}
+            item.name === "Product" ? (
+              <div key={item.name} onClick={handleProductClick} data-testid={`link-${item.name.toLowerCase()}`}>
+                <div className="text-sm font-medium transition-colors hover-elevate px-3 py-2 rounded-md cursor-pointer text-muted-foreground hover:text-foreground">
+                  {item.name}
+                </div>
               </div>
-            </Link>
+            ) : item.name === "Features" ? (
+              <div key={item.name} onClick={handleFeaturesClick} data-testid={`link-${item.name.toLowerCase()}`}>
+                <div className="text-sm font-medium transition-colors hover-elevate px-3 py-2 rounded-md cursor-pointer text-muted-foreground hover:text-foreground">
+                  {item.name}
+                </div>
+              </div>
+            ) : (
+              <Link key={item.name} href={item.href} data-testid={`link-${item.name.toLowerCase()}`}>
+                <div
+                  className={`text-sm font-medium transition-colors hover-elevate px-3 py-2 rounded-md ${
+                    location === item.href
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {item.name}
+                </div>
+              </Link>
+            )
           ))}
         </nav>
 
@@ -107,11 +163,25 @@ export function SiteHeader() {
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
               <nav className="flex flex-col space-y-4 mt-4">
                 {navigation.map((item) => (
-                  <Link key={item.name} href={item.href} data-testid={`mobile-link-${item.name.toLowerCase()}`}>
-                    <div className="text-sm font-medium py-2 px-3 rounded-md hover-elevate">
-                      {item.name}
+                  item.name === "Product" ? (
+                    <div key={item.name} onClick={handleProductClick} data-testid={`mobile-link-${item.name.toLowerCase()}`}>
+                      <div className="text-sm font-medium py-2 px-3 rounded-md hover-elevate cursor-pointer">
+                        {item.name}
+                      </div>
                     </div>
-                  </Link>
+                  ) : item.name === "Features" ? (
+                    <div key={item.name} onClick={handleFeaturesClick} data-testid={`mobile-link-${item.name.toLowerCase()}`}>
+                      <div className="text-sm font-medium py-2 px-3 rounded-md hover-elevate cursor-pointer">
+                        {item.name}
+                      </div>
+                    </div>
+                  ) : (
+                    <Link key={item.name} href={item.href} data-testid={`mobile-link-${item.name.toLowerCase()}`}>
+                      <div className="text-sm font-medium py-2 px-3 rounded-md hover-elevate">
+                        {item.name}
+                      </div>
+                    </Link>
+                  )
                 ))}
                 <Button 
                   className="mt-4" 
