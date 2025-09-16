@@ -22,12 +22,12 @@ export default function Contact() {
     try {
       const formData = new FormData(e.currentTarget);
       const data = {
-        firstName: formData.get('firstName') as string,
-        lastName: formData.get('lastName') as string,
-        email: formData.get('email') as string,
-        company: formData.get('company') as string || undefined,
-        role: formData.get('role') as string || undefined,
-        message: formData.get('message') as string,
+        firstName: (formData.get('firstName') as string) || "",
+        lastName: (formData.get('lastName') as string) || "",
+        email: (formData.get('email') as string) || "",
+        company: (formData.get('company') as string) || "",
+        role: (formData.get('role') as string) || "",
+        message: (formData.get('message') as string) || "",
       };
 
       const response = await fetch('/api/contact', {
@@ -158,7 +158,6 @@ export default function Contact() {
                       <Input 
                         id="firstName" 
                         name="firstName"
-                        required 
                         data-testid="input-first-name"
                         placeholder="John"
                       />
@@ -168,7 +167,6 @@ export default function Contact() {
                       <Input 
                         id="lastName" 
                         name="lastName"
-                        required 
                         data-testid="input-last-name"
                         placeholder="Doe"
                       />
@@ -180,8 +178,6 @@ export default function Contact() {
                     <Input 
                       id="email" 
                       name="email"
-                      type="email" 
-                      required 
                       data-testid="input-email"
                       placeholder="john@company.com"
                     />
@@ -219,7 +215,6 @@ export default function Contact() {
                     <Textarea 
                       id="message" 
                       name="message"
-                      required 
                       rows={4}
                       data-testid="textarea-message"
                       placeholder="Tell us about your use case and how we can help..."
