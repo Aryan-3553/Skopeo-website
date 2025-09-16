@@ -124,12 +124,6 @@ export function Footer() {
                           <span className="group-hover:translate-x-1 transition-transform inline-block">{link.name}</span>
                         </div>
                       </div>
-                    ) : link.name === "Demo" && section.title === "Product" ? (
-                      <div onClick={handleProductClick} data-testid={`footer-link-${link.name.toLowerCase().replace(/\s+/g, '-')}`}>
-                        <div className="text-white/60 hover:text-white hover-elevate px-3 py-2 rounded-lg transition-all duration-300 text-sm group cursor-pointer">
-                          <span className="group-hover:translate-x-1 transition-transform inline-block">{link.name}</span>
-                        </div>
-                      </div>
                     ) : (
                       <Link href={link.href} data-testid={`footer-link-${link.name.toLowerCase().replace(/\s+/g, '-')}`}>
                         <div className="text-white/60 hover:text-white hover-elevate px-3 py-2 rounded-lg transition-all duration-300 text-sm group">
