@@ -1,6 +1,8 @@
 import express, { type Request, Response, NextFunction } from "express";
 import path from "path";
 import fs from "fs";
+import { storage } from "../server/storage";
+import { insertContactMessageSchema } from "../shared/schema";
 
 const app = express();
 app.use(express.json());
@@ -58,6 +60,66 @@ app.get("/api/status", (req, res) => {
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || "development"
   });
+});
+
+// Contact form submission endpoint
+app.post("/api/contact", async (req, res) => {
+  try {
+    // Validate the request body
+    const validatedData = insertContactMessageSchema.parse(req.body);
+    
+    // Extract IP address and user agent for tracking
+    const ipAddress = req.ip || req.connection.remoteAddress || req.socket.remoteAddress;
+    const userAgent = req.get('User-Agent');
+    
+    // Create the contact message with additional metadata
+    const contactMessage = await storage.createContactMessage({
+      ...validatedData,
+      ipAddress: ipAddress || undefined,
+      userAgent: userAgent || undefined,
+    });
+
+    res.status(201).json({
+      status: "success",
+      message: "Contact message submitted successfully",
+      data: {
+        id: contactMessage.id,
+        createdAt: contactMessage.createdAt,
+      }
+    });
+  } catch (error) {
+    console.error("Error creating contact message:", error);
+    
+    if (error instanceof Error && error.name === 'ZodError') {
+      res.status(400).json({
+        status: "error",
+        message: "Invalid form data",
+        errors: error.message
+      });
+    } else {
+      res.status(500).json({
+        status: "error",
+        message: "Internal server error"
+      });
+    }
+  }
+});
+
+// Get all contact messages (for admin use)
+app.get("/api/contact", async (req, res) => {
+  try {
+    const messages = await storage.getContactMessages();
+    res.json({
+      status: "success",
+      data: messages
+    });
+  } catch (error) {
+    console.error("Error fetching contact messages:", error);
+    res.status(500).json({
+      status: "error",
+      message: "Internal server error"
+    });
+  }
 });
 
 // Error handling middleware

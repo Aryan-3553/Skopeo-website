@@ -47,8 +47,20 @@ export default function Contact() {
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
-      console.log('Response:', result); // Debug log
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+      
+      const responseText = await response.text();
+      console.log('Raw response:', responseText);
+      
+      let result;
+      try {
+        result = JSON.parse(responseText);
+        console.log('Parsed response:', result);
+      } catch (parseError) {
+        console.error('JSON parse error:', parseError);
+        throw new Error(`Invalid JSON response: ${responseText}`);
+      }
 
       if (!response.ok) {
         throw new Error(result.message || 'Failed to send message');
