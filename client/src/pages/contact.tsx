@@ -20,15 +20,24 @@ export default function Contact() {
     setIsLoading(true);
     
     try {
-      const formData = new FormData(e.currentTarget);
+      // Get form data directly without any validation
+      const firstName = (e.currentTarget.querySelector('[name="firstName"]') as HTMLInputElement)?.value || "";
+      const lastName = (e.currentTarget.querySelector('[name="lastName"]') as HTMLInputElement)?.value || "";
+      const email = (e.currentTarget.querySelector('[name="email"]') as HTMLInputElement)?.value || "";
+      const company = (e.currentTarget.querySelector('[name="company"]') as HTMLInputElement)?.value || "";
+      const role = (e.currentTarget.querySelector('[name="role"]') as HTMLSelectElement)?.value || "";
+      const message = (e.currentTarget.querySelector('[name="message"]') as HTMLTextAreaElement)?.value || "";
+
       const data = {
-        firstName: (formData.get('firstName') as string) || "",
-        lastName: (formData.get('lastName') as string) || "",
-        email: (formData.get('email') as string) || "",
-        company: (formData.get('company') as string) || "",
-        role: (formData.get('role') as string) || "",
-        message: (formData.get('message') as string) || "",
+        firstName,
+        lastName,
+        email,
+        company,
+        role,
+        message,
       };
+
+      console.log('Submitting data:', data); // Debug log
 
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -39,6 +48,7 @@ export default function Contact() {
       });
 
       const result = await response.json();
+      console.log('Response:', result); // Debug log
 
       if (!response.ok) {
         throw new Error(result.message || 'Failed to send message');
@@ -151,7 +161,7 @@ export default function Contact() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="firstName">First Name</Label>
