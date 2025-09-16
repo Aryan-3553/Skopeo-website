@@ -19,12 +19,12 @@ export type User = typeof users.$inferSelect;
 
 export const contactMessages = pgTable("contact_messages", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  firstName: text("first_name").notNull(),
-  lastName: text("last_name").notNull(),
-  email: text("email").notNull(),
+  firstName: text("first_name"),
+  lastName: text("last_name"),
+  email: text("email"),
   company: text("company"),
   role: text("role"),
-  message: text("message").notNull(),
+  message: text("message"),
   ipAddress: text("ip_address"),
   userAgent: text("user_agent"),
   status: text("status").notNull().default("new"), // new, contacted, resolved
@@ -32,20 +32,15 @@ export const contactMessages = pgTable("contact_messages", {
   updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
 });
 
-export const insertContactMessageSchema = createInsertSchema(contactMessages, {
-  firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().min(1, "Last name is required"),
-  email: z.string().email("Invalid email address"),
-  message: z.string().min(1, "Message is required"),
-}).pick({
-  firstName: true,
-  lastName: true,
-  email: true,
-  company: true,
-  role: true,
-  message: true,
-  ipAddress: true,
-  userAgent: true,
+export const insertContactMessageSchema = z.object({
+  firstName: z.string().optional().default(""),
+  lastName: z.string().optional().default(""),
+  email: z.string().optional().default(""),
+  company: z.string().optional(),
+  role: z.string().optional(),
+  message: z.string().optional().default(""),
+  ipAddress: z.string().optional(),
+  userAgent: z.string().optional(),
 });
 
 export type InsertContactMessage = z.infer<typeof insertContactMessageSchema>;
