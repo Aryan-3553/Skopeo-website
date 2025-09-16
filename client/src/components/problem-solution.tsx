@@ -82,18 +82,18 @@ export function ProblemSolution() {
               data-testid={`problem-card-${index}`}
               style={{ transformStyle: 'preserve-3d' }}
             >
-              <Card className="h-full border-red-500/30 bg-red-950/20 backdrop-blur-sm shadow-glow hover:shadow-red-500/20 transition-all duration-300">
+              <Card className="h-full border-red-500/30 bg-red-50/50 dark:bg-red-950/20 backdrop-blur-sm shadow-glow hover:shadow-red-500/20 transition-all duration-300">
                 <CardContent className="p-8">
                   <div className="flex items-center space-x-4 mb-6">
                     <div className="p-3 bg-red-500/20 rounded-lg">
-                      <problem.icon className="h-7 w-7 text-red-400" />
+                      <problem.icon className="h-7 w-7 text-red-500 dark:text-red-400" />
                     </div>
-                    <h3 className="font-bold text-xl text-white">{problem.title}</h3>
+                    <h3 className="font-bold text-xl text-foreground">{problem.title}</h3>
                   </div>
-                  <p className="text-white/70 mb-6 leading-relaxed">{problem.description}</p>
+                  <p className="text-muted-foreground mb-6 leading-relaxed">{problem.description}</p>
                   <div className="flex flex-wrap gap-3">
                     {problem.chips.map((chip, chipIndex) => (
-                      <Badge key={chipIndex} variant="outline" className="text-xs bg-red-950/40 border-red-500/40 text-red-300 hover:bg-red-950/60">
+                      <Badge key={chipIndex} variant="outline" className="text-xs bg-red-100/60 dark:bg-red-950/40 border-red-500/40 text-red-700 dark:text-red-300 hover:bg-red-200/80 dark:hover:bg-red-950/60">
                         {chip}
                       </Badge>
                     ))}
@@ -119,6 +119,7 @@ export function ProblemSolution() {
 
         {/* Solutions Section */}
         <motion.div
+          id="solution-section"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -148,20 +149,20 @@ export function ProblemSolution() {
               data-testid={`solution-card-${index}`}
               style={{ transformStyle: 'preserve-3d' }}
             >
-              <Card className="h-full border-green-400/30 bg-green-950/20 backdrop-blur-sm shadow-glow hover:shadow-green-400/20 transition-all duration-300">
+              <Card className="h-full border-green-400/30 bg-green-50/50 dark:bg-green-950/20 backdrop-blur-sm shadow-glow hover:shadow-green-400/20 transition-all duration-300">
                 <CardContent className="p-8">
                   <div className="flex items-center space-x-4 mb-6">
                     <div className="p-3 bg-green-400/20 rounded-lg">
-                      <CheckCircle className="h-7 w-7 text-green-400" />
+                      <CheckCircle className="h-7 w-7 text-green-500 dark:text-green-400" />
                     </div>
-                    <h3 className="font-bold text-xl text-white">{solution.title}</h3>
+                    <h3 className="font-bold text-xl text-foreground">{solution.title}</h3>
                   </div>
-                  <p className="text-white/70 mb-6 leading-relaxed">{solution.description}</p>
+                  <p className="text-muted-foreground mb-6 leading-relaxed">{solution.description}</p>
                   <ul className="space-y-3">
                     {solution.benefits.map((benefit, benefitIndex) => (
                       <li key={benefitIndex} className="flex items-center space-x-3 text-sm">
-                        <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                        <span className="text-white/80">{benefit}</span>
+                        <div className="w-2 h-2 rounded-full bg-green-500 dark:bg-green-400 animate-pulse" />
+                        <span className="text-muted-foreground">{benefit}</span>
                       </li>
                     ))}
                   </ul>

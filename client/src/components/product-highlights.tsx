@@ -32,7 +32,7 @@ const highlights = [
 
 export function ProductHighlights() {
   return (
-    <section className="py-32 relative overflow-hidden" data-testid="product-highlights-section">
+    <section id="product-highlights" className="py-32 relative overflow-hidden" data-testid="product-highlights-section">
       {/* Dynamic 3D Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
       <div className="absolute inset-0 bg-grid-pattern opacity-20" style={{ backgroundSize: '60px 60px' }} />

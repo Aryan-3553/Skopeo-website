@@ -83,7 +83,7 @@ export default function Contact() {
     {
       icon: MapPin,
       title: "Office",
-      description: "San Francisco, CA",
+      description: "Waterloo, ON",
       action: null
     },
     {

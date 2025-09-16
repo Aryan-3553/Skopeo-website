@@ -1,5 +1,5 @@
 import { Grid3x3, Github, Linkedin, Mail } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 
 const footerSections = [
   {
@@ -42,6 +42,38 @@ const socialLinks = [
 ];
 
 export function Footer() {
+  const [location] = useLocation();
+
+  const handleFeaturesClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    // If not on home page, navigate there first
+    if (location !== '/') {
+      window.location.href = '/#solution-section';
+    } else {
+      // Already on home page, just scroll
+      const element = document.getElementById('solution-section');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+  const handleProductClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    // If not on home page, navigate there first
+    if (location !== '/') {
+      window.location.href = '/#product-highlights';
+    } else {
+      // Already on home page, just scroll
+      const element = document.getElementById('product-highlights');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <footer className="border-t border-white/20 bg-black relative" data-testid="site-footer">
       <div className="absolute inset-0 bg-grid-pattern opacity-10" style={{ backgroundSize: '40px 40px' }} />
@@ -86,11 +118,25 @@ export function Footer() {
               <ul className="space-y-4">
                 {section.links.map((link) => (
                   <li key={link.name}>
-                    <Link href={link.href} data-testid={`footer-link-${link.name.toLowerCase().replace(/\s+/g, '-')}`}>
-                      <div className="text-white/60 hover:text-white hover-elevate px-3 py-2 rounded-lg transition-all duration-300 text-sm group">
-                        <span className="group-hover:translate-x-1 transition-transform inline-block">{link.name}</span>
+                    {link.name === "Features" ? (
+                      <div onClick={handleFeaturesClick} data-testid={`footer-link-${link.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                        <div className="text-white/60 hover:text-white hover-elevate px-3 py-2 rounded-lg transition-all duration-300 text-sm group cursor-pointer">
+                          <span className="group-hover:translate-x-1 transition-transform inline-block">{link.name}</span>
+                        </div>
                       </div>
-                    </Link>
+                    ) : link.name === "Demo" && section.title === "Product" ? (
+                      <div onClick={handleProductClick} data-testid={`footer-link-${link.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                        <div className="text-white/60 hover:text-white hover-elevate px-3 py-2 rounded-lg transition-all duration-300 text-sm group cursor-pointer">
+                          <span className="group-hover:translate-x-1 transition-transform inline-block">{link.name}</span>
+                        </div>
+                      </div>
+                    ) : (
+                      <Link href={link.href} data-testid={`footer-link-${link.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                        <div className="text-white/60 hover:text-white hover-elevate px-3 py-2 rounded-lg transition-all duration-300 text-sm group">
+                          <span className="group-hover:translate-x-1 transition-transform inline-block">{link.name}</span>
+                        </div>
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
