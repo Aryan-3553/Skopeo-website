@@ -20,15 +20,24 @@ export default function Contact() {
     setIsLoading(true);
     
     try {
-      const formData = new FormData(e.currentTarget);
+      // Get form data directly without any validation
+      const firstName = (e.currentTarget.querySelector('[name="firstName"]') as HTMLInputElement)?.value || "";
+      const lastName = (e.currentTarget.querySelector('[name="lastName"]') as HTMLInputElement)?.value || "";
+      const email = (e.currentTarget.querySelector('[name="email"]') as HTMLInputElement)?.value || "";
+      const company = (e.currentTarget.querySelector('[name="company"]') as HTMLInputElement)?.value || "";
+      const role = (e.currentTarget.querySelector('[name="role"]') as HTMLSelectElement)?.value || "";
+      const message = (e.currentTarget.querySelector('[name="message"]') as HTMLTextAreaElement)?.value || "";
+
       const data = {
-        firstName: formData.get('firstName') as string,
-        lastName: formData.get('lastName') as string,
-        email: formData.get('email') as string,
-        company: formData.get('company') as string || undefined,
-        role: formData.get('role') as string || undefined,
-        message: formData.get('message') as string,
+        firstName,
+        lastName,
+        email,
+        company,
+        role,
+        message,
       };
+
+      console.log('Submitting data:', data); // Debug log
 
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -38,7 +47,20 @@ export default function Contact() {
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+      
+      const responseText = await response.text();
+      console.log('Raw response:', responseText);
+      
+      let result;
+      try {
+        result = JSON.parse(responseText);
+        console.log('Parsed response:', result);
+      } catch (parseError) {
+        console.error('JSON parse error:', parseError);
+        throw new Error(`Invalid JSON response: ${responseText}`);
+      }
 
       if (!response.ok) {
         throw new Error(result.message || 'Failed to send message');
@@ -151,14 +173,13 @@ export default function Contact() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="firstName">First Name</Label>
                       <Input 
                         id="firstName" 
                         name="firstName"
-                        required 
                         data-testid="input-first-name"
                         placeholder="John"
                       />
@@ -168,7 +189,6 @@ export default function Contact() {
                       <Input 
                         id="lastName" 
                         name="lastName"
-                        required 
                         data-testid="input-last-name"
                         placeholder="Doe"
                       />
@@ -180,8 +200,6 @@ export default function Contact() {
                     <Input 
                       id="email" 
                       name="email"
-                      type="email" 
-                      required 
                       data-testid="input-email"
                       placeholder="john@company.com"
                     />
@@ -219,7 +237,6 @@ export default function Contact() {
                     <Textarea 
                       id="message" 
                       name="message"
-                      required 
                       rows={4}
                       data-testid="textarea-message"
                       placeholder="Tell us about your use case and how we can help..."
